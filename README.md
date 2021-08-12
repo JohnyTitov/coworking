@@ -15,7 +15,7 @@
     This will allow the calendar to be displayed.
 
 
-4.  For send messages on e-mail write this code in settings.py:
+4.  For send messages on e-mail add this code in `settings.py`:
 
         EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
         DEFAULT_FROM_EMAIL = "your_email@mail.ru"
