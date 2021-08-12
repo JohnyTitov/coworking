@@ -1,0 +1,19 @@
+{% extends "layout/basic.html" %}
+{% load bootstrap4 %}
+
+{% block title %} Удаление пользователя {% endblock %}
+
+{% block content %}
+<div class="container" style="height: 100%;">
+<div class="row" style="height: 100%;">
+	<form class="logoform" method="post">
+		<h5>Вы точно хотите удалить профиль?</h2>
+		<div class="container" style=" width: 150px; padding-top: 15px">
+			<a class = "django_but" style="" href="{% url 'main:profile_change' %}">Отмена</a>
+			{% csrf_token %}
+			{% buttons submit='Да' %}{% endbuttons %}
+		</div>
+	</form>
+</div>
+</div>
+{% endblock %}

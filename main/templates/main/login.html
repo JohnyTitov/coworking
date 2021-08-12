@@ -1,0 +1,23 @@
+{% extends "layout/basic.html" %}
+{% load bootstrap4 %}
+
+{% block title %} Вход {% endblock %}
+
+{% block content %}
+<div class="container " style="height: 100%;">
+<div class="row  flex-items-xs-center" style="height: 100%; ">
+	{% if user.is_authenticated %}
+		<p>Вы уже выполнили вход</p>
+	{% else %}
+		<form class = "logoform " method="post">
+			<h2 style="text-align: center ">Вход</h2>
+			{% csrf_token %}
+			{% bootstrap_form form  %}
+			{% buttons submit='Войти' %}
+				<a style ="	float: right;" href="{% url 'main:password_reset' %}"> Забыли пароль?</a>
+			{% endbuttons %}
+		</form>
+	{% endif %}
+</div>
+</div>
+{% endblock %}

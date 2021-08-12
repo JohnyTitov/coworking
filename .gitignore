@@ -1,0 +1,9 @@
+/venv/
+/media/
+*.log
+*.pot
+*.pyc
+__pycache__
+
+.idea
+*.data

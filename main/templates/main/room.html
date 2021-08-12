@@ -1,0 +1,21 @@
+{% extends "layout/basic.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+{% for Room in ListRoom %}
+	<div class="row room_row">
+		<div class="col-md room_col" >
+			<img src="{{ Room.image_room.url }}" class="w-100">
+		</div>
+		<div class="col-md room_col">
+			<h2>{{ Room.name_room }}</h2>
+			<p>{{ Room.about_room }}</p>
+			<div class="room_price" >
+				<p>Цена: {{ Room.price_room }} руб/час</p>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock %}

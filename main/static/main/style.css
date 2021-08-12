@@ -1,0 +1,159 @@
+@import url(reservation.css);
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 90%;
+}
+
+.static_menu {	/* для статичного меню */
+	 width: 100%; 
+	 position: fixed;
+}
+
+a.left_but, a.right_but {		/*Для каждой кнопки белый цвет и одинаковый размер*/
+	color: white;
+	font-size: 20px;
+}
+a.left_but:hover {	/* при наведении меняется background */
+	background-color: #1f1f1f;
+	color: #c5c5c5;
+}
+a.right_but:hover {	/* при наведении подчеркнутый шрифт */
+	text-decoration: underline;
+}
+.logoform {	/*Форма в центре*/
+	margin: auto;
+	vertical-align: middle;
+	background-color: #fff;
+	padding:10px;	/*внутренний отступ*/
+	border: 0.5px solid silver;
+	border-radius: 5px;
+	box-shadow: 0 0 10px #8e8e8e;
+}
+.p-0 {	/*Убираем пэддинг*/
+	padding:0px;
+}
+.padding-0 {
+	padding-left: 0px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon { /*Стрелки в карусели*/
+	height: 50px;
+	width: 50px;
+}
+.my-list {
+	font-size: 20px;
+	line-height: 2.5;
+	list-style-type: none;
+}
+.my-list li img{
+	margin-right:5px;
+}
+
+.menu-bat {
+	background-image: url(menu.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 50px;
+	height: 40px;
+}
+
+.log-block {
+	position: absolute; 
+	right:20px; 
+	top:0; 
+	z-index: 2;
+	padding-top: 7px;
+}
+
+.django_but {
+	line-height: 38px;
+	float: right; 
+	background-color: #007bff;
+	border-radius: 4px;
+	border:none;
+	color: white;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.django_but:hover {
+	background-color: #0069d9;
+	color: white;
+	text-decoration: none;
+}
+.infa-white { /*Что такое коворкинг центр*/
+	padding: 12%;
+	font-size: calc(1em + 1vw);
+}
+.h1_super_size{ /*Что такое коворкинг центр*/
+	font-size: calc(1.2em + 0.4vw);
+}
+
+.imgblock {
+    position: relative;
+    display: inline-block;
+}
+
+
+.imgblock h1 {
+    /*background: #222;*/
+    text-align: center;
+    color: white;
+    position: absolute;
+    font-size: calc(1em + 5vw);
+    text-shadow: 2px 1px 1px #000;
+    padding: 12%;
+    margin-left: 12%;
+}
+
+.dj_in {
+	height:38px;
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	margin-bottom: 10px; 
+	padding-left: 10px;
+	float: right;
+}
+
+.room_row {
+	margin-top: 20px; 
+	margin-bottom: 15px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+	text-align:justify;
+}
+
+.room_col {
+	margin-top: 15px; 
+	margin-bottom: 15px;
+}
+
+.room_price {
+	color: white;
+	background-color: green;
+	height: 40px;
+	width: 200px;
+	text-align: center;
+	float: right;
+	font-weight: bold;
+	padding-top: 8px;
+}
+
+
+.reservation_form {	/*Форма в центре*/
+	margin: 10px;	/*внутренний отступ*/
+	margin-top: 25px;
+	padding: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.invisible_block {
+	border: 1px solid black;
+}
+

@@ -1,0 +1,194 @@
+{% extends "layout/basic.html" %}
+{% load static %}
+{% load super_filters %}
+{% block content %}
+<div class="container-fluid " style="height: 100%;">
+	<div class="reservation_form">
+	<form action="{% url 'main:reservation' %}" class="" method="post">
+		{{ form.user_id }}
+		<h2 style="color: #13af30;">1.Выберите помещение {{ form.room }}</h2>
+		<h2 style="color: red;">2.Выберите дату </h2>
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-8">
+				
+				<div style="padding: 15px;">
+					<div class="row" style="border: 1px solid black;" >
+						<div class="col-8" style="text-align: center;">
+							<h3 id="name_month1" >{{ list_month.0.name }}</h3>
+							<h3 id="name_month2" style="display: none;">{{ list_month.1.name }}</h3>
+							<h3 id="name_month3" style="display: none;">{{ list_month.2.name }}</h3>
+						</div>
+						<div class="col p-0" style="text-align: right;">
+							<div class="calendar_button">
+								<button type="button" class="btn rounded-circle shadow-none" disabled="disabled" id="btn_left" onclick="turn_click('left')">
+								<img src="{% static 'main/left.png' %}" >
+								</button>
+				  				
+								<button type="button" class="btn rounded-circle shadow-none" id="btn_right" onclick="turn_click('right')">
+								<img src="{% static 'main/right.png' %}" >
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="background-color: grey;">
+						<div class="col week_day" style="border-left: 1px solid black;">
+							<br/><p>Пн</p>
+						</div>
+						<div class="col week_day">
+							<br/><p>Вт</p>
+						</div>
+						<div class="col week_day">
+							<br/><p>Ср</p>
+						</div>
+						<div class="col week_day">
+							<br/><p>Чт</p>
+						</div>
+						<div class="col week_day">
+							<br/><p>Пт</p>
+						</div>
+						<div class="col week_day">
+							<br/><p>Сб</p>
+						</div>
+						<div class="col week_day">
+							<br/><p>Вс</p>
+						</div>
+					</div>
+					{% for month in list_month %}
+						<div id="mont{% cycle '1' '2' '3' %}" class="row {% cycle 'd-block' 'd-none' 'd-none' %}" style="border: 1px solid black;">
+						{% for week_room in month.list_week %}
+						<div id="month{{ month.number }}_room{{forloop.counter0}}" class="{% if forloop.counter0 != 0 %} d-none {% else %}calendar{% endif %}" style="margin: 0px;">
+							{% for week in week_room %}
+								{% for day in week %}
+									<div class="calendar_day" >
+										<label name="day_room_{{ day.room_id }}" id="day_{{ day.value }}" class="day_{{ day.color }}" style="border: 1px solid #d1d1d1;"> 
+											<p>{{ form.day|return_date:day }}</p>
+										</label>
+									</div>
+								{% endfor %}
+								
+							{% endfor %}
+						</div>
+						{% endfor %}
+						</div>
+					{% endfor %}
+				</div>
+
+				<script type="text/javascript"> // КОСТЫЛЬ (для передачи списка занятого времени в JS)
+
+					var length_month = '{% for month in list_month %}+{% endfor %}'.length;	// кол-во месяцев
+
+					window.rooms = [];	// корявый список занятого времени по комнатам
+
+					var list_all = '{% for month in list_month %}{% for week_room in month.list_week %}_{{ forloop.counter }}{% for week in week_room %}{% for day in week %}/{{ day.value }}{% for time in day.times.values %}|{{ time }}{% endfor %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}';
+
+					var list_room = list_all.split('_');// список комнат
+					list_room.splice(0, 1);	// удаляем пустой эл-т
+
+
+					for(var i=0; i < list_room.length; i++){
+
+						list_day = list_room[i].split('/');// список дней
+
+						room={	// комната
+							number: list_day[0],	// номер комнаты
+							list_day: [],			// список дней
+						}
+						list_day.splice(0, 1);	// удаляем первый эл-т
+						list_day = list_day.filter(element => element !== "None");	// удаляем пустые дни из списка дней
+
+						let days = [];
+
+						for(var j=0; j<list_day.length; j++){
+
+							list_time = list_day[j].split('|');	//список времени
+
+							day={
+								date: list_time[0],
+								list_time: [],
+							}
+
+							list_time.splice(0, 1);	// удаляем первый эл-т
+							day.list_time = list_time;
+
+							days.push(day);		// добавляем день в список дней
+						}
+						room.list_day = days;
+						window.rooms.push(room);	// добавляем комнату в список комнат
+					}
+					//var length_room = rooms.length/length_month;	// количество комнат
+				</script> <!-- КОНЕЦ КОСТЫЛЯ -->
+	
+				<div id="select_time" style="display: none;"> <!-- область выбора времени -->
+					<h3 style="margin-bottom: 15px; margin-top: 12px;">3.Выберите время: </h3>
+					<div class="d-none d-sm-block"> <!-- временная панель -->
+						<div id="time_begin" class="time_panel">
+							<div></div>
+							{% for time in form.time_begin %}
+								<div>
+									<div id="label_begin{{ forloop.counter0 }}" class="time_text">
+										{{ time.choice_label }}
+									</div>
+									{% if forloop.counter|module_2 %}<div style="height: 10px;"></div>
+									{% else %}<div style="height: 10px; border-left: 1px solid black;"></div>
+									{% endif %}
+									<div class="shkala"></div>
+									<label id="tb_{{ forloop.counter0 }}" >{{ time.tag }}</label>
+								</div>
+							{% endfor %}
+							<div>
+								<div class="time_text">22</div>
+								<div style="height: 70px; border-left: 1px solid black;"></div>
+							</div>
+						</div>
+						<div id="time_end" class="d-none">
+							<div></div>
+							{% for time in form.time_end %}
+								<div>
+									<div id="label_end{{ forloop.counter0 }}" class="time_text">
+										{{ time.choice_label }}
+									</div>
+									{% if forloop.counter|module_2 %}<div style="height: 10px;"></div>
+									{% else %}<div style="height: 10px; border-left: 1px solid black;"></div>
+									{% endif %}
+									<div class="shkala"></div>
+									<label id="te_{{ forloop.counter0 }}" onmouseover="mouse_time_end('{{ forloop.counter0 }}')">
+										{{ time.tag }}
+									</label>
+								</div>
+							{% endfor %}
+							<div>
+								<div class="time_text">22</div>
+								<div style="height: 70px; border-left: 1px solid black;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="d-sm-none" style="display: grid; grid-template-rows: 2;"><!-- временная панель (mobile) -->
+						<div id="m_time_begin" class="d-none">C: 
+						<select name="select_mobile_begin" onchange="mobile_change_TimeBegin(this)">
+							<option value="" selected disabled hidden>---</option>
+						   {% for time in form.time_begin %}
+						   		<option id="mtb_{{ forloop.counter0 }}" value="{{ forloop.counter0 }}">{{ forloop.counter0|get_label_begin }}</option>
+						   {% endfor %}
+						</select>
+						</div>
+						<div id="m_time_end" class="d-none">До: 
+						<select name="select_mobile_end">
+							<option value="" selected disabled hidden>---</option>
+						   {% for time in form.time_end %}
+						   		<option id="mte_{{ forloop.counter0 }}" value="{{ forloop.counter0 }}">{{ forloop.counter0|get_label_end }}</option>
+						   {% endfor %}
+						</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<!-- место для доп услуг -->
+				<input id="button_reservation" class="django_but" type="submit" value="Забронировать" style="display: none;">
+			</div>
+		</div>	
+	</form>
+	</div>
+</div>
+{% endblock %}

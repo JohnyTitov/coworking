@@ -1,0 +1,23 @@
+{% extends "layout/basic.html" %}
+
+{% load bootstrap4 %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+<div class="container" style="height: 100%;">
+<div class="row" style="height: 100%;">
+	<form class = "logoform" method="post">
+		<h2 style="text-align: center ">Мой профиль</h2>
+		{% csrf_token %}
+		{% bootstrap_form form %}
+		{% buttons submit='Сохранить' %}
+		<div style ="	float: right;">
+			<a href="{% url 'main:password_change' %}"> Сменить пароль</a>&nbsp;&nbsp;
+			<a href="{% url 'main:profile_delete' %}"> Удалить профиль</a>
+		</div>
+		{% endbuttons %}
+	</form>
+</div>
+</div>
+{% endblock %}

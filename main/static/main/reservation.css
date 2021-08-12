@@ -1,0 +1,98 @@
+.calendar{
+	display: grid;
+	grid-template-rows:6;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+}
+
+.calendar_day {
+	min-height: 70px;
+	padding: 0px;
+	height: 100%;
+}
+
+.calendar_day label {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+.calendar_day p{
+	margin: 10px;
+	font-size: calc(0.6em + 0.4vw);
+	font-weight: 500;
+}
+.calendar_day input[type="radio"] {
+	display: none;
+}
+
+.day_green {
+	background-color: #dbffcf;
+}
+.day_yellow {
+	background-color: yellow;
+}
+.day_red {
+	background-color: #f87979;
+	pointer-events: none;	/* не кликабельный */
+}
+.day_grey {
+	background-color: #ededed;
+	pointer-events: none;	/* не кликабельный */
+}
+
+.week_day {
+	border-right: 1px solid black;
+	min-height: 70px;
+	padding: 0px;
+	text-align: center;
+	color: white;
+	font-weight: bolder;
+	text-shadow: 1px 1px 1px #000;
+}
+
+
+.time_panel{	/* временная панель */
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 100px;
+}
+.time_panel label{	/* каждый label временной панели */
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	background: #9d9d9d;
+	width: 100%;
+	height: 40px;
+}
+.time_panel input[type="radio"] {	/* скрытые radio */
+	display: none;
+}
+.time_text{		/* текст с временем */
+	position:relative;
+    left: -5px;
+	margin: 0px;
+	height: 30px;
+}
+
+.shkala{	/* шкала */
+height: 20px;
+border-left: 1px solid black;
+border-bottom: 1px solid black;
+}
+
+.calendar_button{	/* группа кнопок (лево, право) */
+	float: right;
+	display: grid;
+	grid-template-columns: 1fr 1fr; 
+}
+
+.select_room{	/* выбор комнаты */
+	font-size: calc(0.5em + 1vw);
+}
+
+.mobile_time{
+	text-align: right;
+	font-size: 20pt;
+	margin-bottom: 5px;
+}
+.mobile_time select{
+	width: 75%;
+}

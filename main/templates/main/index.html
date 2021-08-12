@@ -1,0 +1,74 @@
+{% extends "layout/basic.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid  padding-0">
+	<div class="row  p-0" >
+		<div class="col-12 p-0 imgblock">
+			<h1> Коворкинг центр
+				<p>Секиотово 37</p>
+			</h1>
+			<img src="static\main\index.jpg" class="w-100">
+		</div>
+		<div class="col-12 p-0 ">
+			<div class="container text-center infa-white">
+				<h1 class="h1_super_size">Что такое Коворкинг центр?</h1>
+				<p> - это открытое пространство, используемое для работы, деловых встреч, конференций, мастер-классов.</p>
+			</div>
+		</div>	
+	</div>
+</div>
+<div class="container-fluid jumbotron padding-0">
+	<div class="row p-0">
+		<div class="col-md p-0">
+			<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li class="active" data-target="#carouselExampleIndicators"
+					data-slide-to="0"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="static\main\1.jpg" alt="" class="d-block w-100">
+					</div>
+					<div class="carousel-item ">
+						<img src="static\main\2.jpg" alt="" class="d-block w-100">
+					</div>
+					<div class="carousel-item ">
+						<img src="static\main\3.jpg" alt="" class="d-block w-100">
+					</div>
+				</div>
+				<a href="#carouselExampleIndicators" class="carousel-control-prev"
+				role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				</a>
+				<a href="#carouselExampleIndicators" class="carousel-control-next"
+				role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				</a>
+			</div>
+		</div>
+		<div class="col-md p-0" >
+			<h1 style="text-align: center;"> Целевая аудитория: </h1>
+			<ul class="my-list ">
+				<li><img src="static\main\chek.png">
+				Фрилансеры;</li> 
+				<li><img src="static\main\chek.png">
+				Группы разработчиков (программисты, вэб-мастера, копирайтеры);</li> 
+				<li><img src="static\main\chek.png">
+				Начинающие предприниматели;</li> 
+				<li><img src="static\main\chek.png">
+				Самозанятое население;</li>
+				<li><img src="static\main\chek.png">
+				Люди, стремящиеся к саморазвитию и посещающие различные мероприятия 
+				</li>  
+			</ul>
+		</div>
+	</div>
+</div>
+
+<a name="about"></a> <!-- типо метка -->
+{% endblock %}
